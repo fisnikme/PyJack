@@ -117,7 +117,7 @@ The application reads and writes data using files:
 		Invoice #001
 		----------------------
 		1x Margherita (Medium)   12.50
-bash
+
 
 		2x Salami (Large)        30.00
 		----------------------
