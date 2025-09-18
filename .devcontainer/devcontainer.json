@@ -1,0 +1,24 @@
+{
+  "name": "PizzaRP",
+  "image": "mcr.microsoft.com/devcontainers/python:3.11",
+
+  "features": {
+    "ghcr.io/devcontainers/features/common-utils:2": {},
+    "ghcr.io/devcontainers/features/gui-desktop:1": {}
+  },
+
+  "forwardPorts": [6080],
+
+  "settings": {
+    "python.defaultInterpreterPath": "/usr/local/bin/python3",
+    "python.analysis.typeCheckingMode": "basic"
+  },
+
+  "extensions": [
+    "ms-python.python",
+    "ms-python.vscode-pylance"
+  ],
+
+  "postCreateCommand": "python3 --version",
+  "remoteUser": "vscode"
+}
