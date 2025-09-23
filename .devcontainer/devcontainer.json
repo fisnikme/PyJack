@@ -24,8 +24,9 @@
       "extensions": [
         "ms-python.python",
         "ms-python.vscode-pylance",
-        "GitHub.copilot",
-        "GitHub.copilot-chat"
+        "ms-python.black-formatter"
+       // "GitHub.copilot",
+       // "GitHub.copilot-chat"
       ]
     }
   },
