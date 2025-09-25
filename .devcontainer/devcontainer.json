@@ -1,38 +1,25 @@
 {
-  // ===========================================================
-  // 🍕 PizzaRP Reference Project - Devcontainer (Minimal)
-  // Goal: Console-first Python app in Codespaces
-  // Note: Tk is installed in the Dockerfile so `import turtle` works,
-  //       but GUI windows won't show in headless Codespaces.
-  // ===========================================================
-  "name": "Python PizzaRP Dev",
-  // Build from our Dockerfile (Python + Tk)
+  "name": "Example-Playground",
   "build": {
-    "dockerfile": "Dockerfile"
+    "dockerfile": "Dockerfile",
+    "context": "."
   },
   "customizations": {
     "vscode": {
       "settings": {
-        "python.defaultInterpreterPath": "/usr/local/bin/python3",
+        "python.defaultInterpreterPath": "/usr/local/bin/python",
         "editor.formatOnSave": true,
         "workbench.startupEditor": "readme",
-        // Keep this single guard: don't auto-open browser when something listens
         "remote.autoForwardPorts": false,
-        // Optional: show inline Copilot ghost text when available
         "editor.inlineSuggest.enabled": true
       },
       "extensions": [
         "ms-python.python",
         "ms-python.vscode-pylance",
         "ms-python.black-formatter"
-       // "GitHub.copilot",
-       // "GitHub.copilot-chat"
       ]
     }
   },
-  // Upgrade pip, install deps if present, print Python version, and show a short Copilot note
-  "postCreateCommand": "pip install -U pip && (pip install -r requirements.txt || true) && python3 --version && echo '\n🔧 Devcontainer ready.\n🤖 Copilot: sign in to GitHub in VS Code and ensure you have a Copilot license (Student Pack works).\n'",
   "remoteUser": "vscode",
-  // No explicit forwards for this console app
   "forwardPorts": []
 }

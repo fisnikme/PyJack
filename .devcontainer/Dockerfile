@@ -1,12 +1,8 @@
-# Official Python devcontainer image (stable in Codespaces)
+# Uses Microsoft's Python devcontainer base (has user "vscode" and Python preinstalled)
 FROM mcr.microsoft.com/devcontainers/python:3.11
 
-# Optional: install Tk so `import tkinter` / `import turtle` doesn’t crash.
-# Note: Codespaces is headless → no visible windows; for turtle graphics, run locally.
-USER root
-RUN apt-get update \
- && apt-get install -y --no-install-recommends python3-tk tk \
- && rm -rf /var/lib/apt/lists/*
+# Optional: set up a venv and install tools
+# RUN python -m venv /workspace/.venv && \
+#     /workspace/.venv/bin/pip install --upgrade pip black
 
-# Standard workspace path in Codespaces
-WORKDIR /workspaces/PizzaRP
+# Ensure the default PATH finds python at /usr/local/bin/python in this image
