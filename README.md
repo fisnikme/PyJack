@@ -1,187 +1,96 @@
-# 🍕 PizzaRP – Pizzeria Reference Project (Console)
+# PyJack 
 
-> 🚧 This is a template repository for student project in the course Programming Foundations at FHNW, BSc BIT.  
-> 🚧 Do not keep this section in your final submission.
-
-This project is intended to:
-
-- Practice the complete process from **problem analysis to implementation**
-- Apply basic **Python** programming concepts learned in the Programming Foundations module
-- Demonstrate the use of **console interaction, data validation, and file processing**
-- Produce clean, well-structured, and documented code
-- Prepare students for **teamwork and documentation** in later modules
-- Use this repository as a starting point by importing it into your own GitHub account.  
-- Work only within your own copy — do not push to the original template.  
-- Commit regularly to track your progress.
-
-# 🍕 TEMPLATE for documentation
-> 🚧 Please remove this paragraphs having "🚧". These are comments for preparing the documentations.
-## 📝 Analysis
+## 📝 Analyse
 
 **Problem**
-> 🚧 Describe the real-world problem your application solves. (Not HOW, but WHAT)
 
-💡 Example: In a small local pizzeria, the staff writes orders and calculates totals by hand. This causes mistakes and inconsistent orders or discounts.
+Wir helfen Menschen, lange Wartezeiten und Langeweile zu überbrücken. Zusätzlich unterstützen wir Glückspielende dabei, zu spielen, ohne das Risiko Geld zu verlieren und dennoch die Befriedigung des Spielens zu erleben.
 
-**Scenario**
-> 🚧 Describe when and how a user will use your application
+**Szenario**
 
-💡 Example: PizzaRP solves the part of the problem where orders and totals are created by letting a user select items from a menu and automatically generating a correct invoice.
+PyJack ist ein einfach zugängliches Spiel gegen Langeweile. Spielende können jederzeit und überall ohne Internetverbindung spielen. 
 
 **User stories:**
-1. As a user, I want to see the pizza menu in the console.
-2. As a user, I want to select pizzas and see the running total.
-3. As a user, I want discounts to be applied automatically.
-4. As a user, I want an invoice to be created and saved as a file.
+- Als Nutzer möchte ich sofort nach Sieg oder Niederlage ein neues Spiel starten können. 
+- Als Nutzer möchte eine Karte ziehen oder bei der aktuellen Hand bleiben können. 
+- Als Nutzer möchte ich informiert werden, ob ich gewonnen oder verloren habe. 
+- Als Nutzer möchte ich, dass Gewinne und Verluste in einer Datei protokolliert werden, damit ich meine Gewinn-/Verlustrate verfolgen kann. 
 
 **Use cases:**
-- Show Menu (from `menu.txt`)
-- Create Order (choose pizzas)
-- Show Current Order and Total
-- Print Invoice (to `invoice_xxx.txt`)
+- Neues Spiel starten (Deck mischen, Karten austeilen) 
+- Spielzustand anzeigen (Hände mit Werten) 
+- Spielerentscheidung treffen (Hit/Stand mit Validierung) 
+- Dealer-Automatik (Standardregeln: Hit bei 16, Stand bei 17) 
+- Gewinner ermitteln und bekanntgeben 
+- Ergebnis protokollieren (game_log.json) 
 
 ---
 
-## ✅ Project Requirements
+## ✅ Projetkanforderungen
 
-Each app must meet the following three criteria in order to be accepted (see also the official project guidelines PDF on Moodle):
-
-1. Interactive app (console input)
-2. Data validation (input checking)
-3. File processing (read/write)
-
----
-
-### 1. Interactive App (Console Input)
-
-> 🚧 In this section, document how your project fulfills each criterion.  
----
-The application interacts with the user via the console. Users can:
-- View the pizza menu
-- Select pizzas and quantities
-- See the running total
-- Receive an invoice generated as a file
+Folgende Anforderungen sind an das Projekt gestellt worden:
+1. Interaktive Konsolen Anwendung: 
+2. Datenvalidierung
+3. Dateiverarbeitung
 
 ---
 
+### 1. Interaktive Konsolenanwendung: 
 
-### 2. Data Validation
-
-The application validates all user input to ensure data integrity and a smooth user experience. This is implemented in `main-invoice.py` as follows:
-
-- **Menu selection:** When the user enters a pizza number, the program checks if the input is a digit and within the valid menu range:
-	```python
-	if not choice.isdigit() or not (1 <= int(choice) <= len(menu)):
-			print("⚠️ Invalid choice.")
-			continue
-	```
-	This ensures only valid menu items can be ordered.
-
-- **Menu file validation:** When reading the menu file, the program checks for valid price values and skips invalid lines:
-	```python
-	try:
-			menu.append({"name": name, "size": size, "price": float(price)})
-	except ValueError:
-			print(f"⚠️ Skipping invalid line: {line.strip()}")
-	```
-
-- **Main menu options:** The main menu checks for valid options and handles invalid choices gracefully:
-	```python
-	else:
-			print("⚠️ Invalid choice.")
-	```
-
-These checks prevent crashes and guide the user to provide correct input, matching the validation requirements described in the project guidelines.
-
----
+Die Anwendung interagiert mit dem Benutzer durch die Konsole. Benutzer können:
+- Menünavigation und Spielerentscheidungen 
+- Hit/Stand-Auswahl während des Spiels 
+- Neustart des Spiels nach jeder Runde 
 
 ---
 
 
-### 3. File Processing
+### 2. Validierung von Daten:
 
-The application reads and writes data using files:
-
-- **Input file:** `menu.txt` — Contains the pizza menu, one item per line in the format `PizzaName;Size;Price`.
-	- Example:
-		```
-		Margherita;Medium;12.50
-		Salami;Large;15.00
-		Funghi;Small;9.00
-		```
-	- The application reads this file at startup to display available pizzas.
-
-- **Output file:** `invoice_001.txt` (and similar) — Generated when an order is completed. Contains a summary of the order, including items, quantities, prices, discounts, and totals.
-	- Example:
-		```
-		Invoice #001
-		----------------------
-		1x Margherita (Medium)   12.50
+Folgende Inputs des Benutzers, werden durch die Applikation geprüft, um ein reibungsloses Spielerlebnis für den Benutzer zu garantieren:
+- Menüauswahl-Validierung (Historie/Spielen) 
+- Gameplay-Entscheidungen (Hit/Stand) 
+- Fortsetzungs-Eingabe (Ja/Nein) 
 
 
-		2x Salami (Large)        30.00
-		----------------------
-		Total:                  42.50
-		Discount:                2.50
-		Amount Due:             40.00
-		```
-		- The output file serves as a record for both the user and the pizzeria, ensuring accuracy and transparency.
+---
 
-## ⚙️ Implementation
 
-### Technology
+### 3. Dateiverarbeitung
+
+Die Applikation verwendet die Datei game_log.json, zum Auslesen der Historie und zum Speichern neuer Spielresultate.
+
+- **Output file:** `game_log.json`— Die Datei wird beim ersten Spiel generiert. In der Datei befinden sich die letzten Spielresultate. Die Spielresultate werden immer mit Zeitstempeln versehen.
+
+
+## ⚙️ Implementierung
+
+### Technologie
 - Python 3.x
-- Environment: GitHub Codespaces
-- No external libraries
+- Umgebung: GitHub Codespaces
+- Tbd
 
-### 📂 Repository Structure
-```text
-PizzaRP/
-├── main.py             # main program logic (console application)
-├── menu.txt            # pizza menu (input data file)
-├── invoice_001.txt     # example of a generated invoice (output file)
-├── docs/               # optional screenshots or project documentation
-└── README.md           # project description and milestones
-```
+### 📂 Repository Struktur
+>tbd
 
-### How to Run
-> 🚧 Adjust if needed.
-1. Open the repository in **GitHub Codespaces**
-2. Open the **Terminal**
-3. Run:
-	```bash
-	python3 main.py
-	```
+### Wie startet man die Anwendung
+>tbd
 
-### Libraries Used
-
-- `os`: Used for file and path operations, such as checking if the menu file exists and creating new files.
-- `glob`: Used to find all invoice files matching a pattern (e.g., `invoice_*.txt`) to determine the next invoice number.
-
-These libraries are part of the Python standard library, so no external installation is required. They were chosen for their simplicity and effectiveness in handling file management tasks in a console application.
+### Verwendete Libraries 
+>tbd
 
 
-## 👥 Team & Contributions
+## 👥 Gruppe
 
-> 🚧 Fill in the names of all team members and describe their individual contributions below. Each student should be responsible for at least one part of the project.
+| Andri Schwab   | 
+| Fisnik Mehmeti |
 
-| Name       | Contribution                                 |
-|------------|----------------------------------------------|
-| Student A  | Menu reading (file input) and displaying menu|
-| Student B  | Order logic and data validation              |
-| Student C  | Invoice generation (file output) and slides  |
 
 
 ## 🤝 Contributing
+>tbd
 
-> 🚧 This is a template repository for student projects.  
-> 🚧 Do not change this section in your final submission.
+## 📝 Lizenz
 
-- Use this repository as a starting point by importing it into your own GitHub account.  
-- Work only within your own copy — do not push to the original template.  
-- Commit regularly to track your progress.
-
-## 📝 License
-
-This project is provided for **educational use only** as part of the Programming Foundations module.  
+Dieses Projekt dient nur Bildungszwecken als Teil eines Programmiermoduls.
 [MIT License](LICENSE)
