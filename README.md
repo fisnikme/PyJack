@@ -1,14 +1,14 @@
-# PyJack 
+# PyJack ♥️♣️♦️♠️
 
 ## 📝 Analyse
 
 **Problem**
 
-Wir helfen Menschen, lange Wartezeiten und Langeweile zu überbrücken. Zusätzlich unterstützen wir Glückspielende dabei, zu spielen, ohne das Risiko Geld zu verlieren und dennoch die Befriedigung des Spielens zu erleben.
+Wir helfen Menschen, lange Wartezeiten und Langeweile zu überbrücken. Zusätzlich unterstützen wir Glücksspielende dabei, zu spielen, ohne das Risiko Geld zu verlieren und dennoch die Befriedigung des Spielens zu erleben.
 
 **Szenario**
 
-PyJack ist ein einfach zugängliches Spiel gegen Langeweile. Spielende können jederzeit und überall ohne Internetverbindung spielen. 
+PyJack ist ein einfach zugängliches Spiel gegen Langeweile. Spielenden können jederzeit und überall ohne Internetverbindung spielen. 
 
 **User stories:**
 - Als Nutzer möchte ich sofort nach Sieg oder Niederlage ein neues Spiel starten können. 
@@ -26,10 +26,10 @@ PyJack ist ein einfach zugängliches Spiel gegen Langeweile. Spielende können j
 
 ---
 
-## ✅ Projetkanforderungen
+## ✅ Projektanforderungen
 
 Folgende Anforderungen sind an das Projekt gestellt worden:
-1. Interaktive Konsolen Anwendung: 
+1. Interaktive Konsolenanwendung
 2. Datenvalidierung
 3. Dateiverarbeitung
 
@@ -38,7 +38,7 @@ Folgende Anforderungen sind an das Projekt gestellt worden:
 ### 1. Interaktive Konsolenanwendung: 
 
 Die Anwendung interagiert mit dem Benutzer durch die Konsole. Benutzer können:
-- Menünavigation und Spielerentscheidungen 
+- Menü-Navigation und Spielerentscheidungen 
 - Hit/Stand-Auswahl während des Spiels 
 - Neustart des Spiels nach jeder Runde 
 
@@ -50,7 +50,7 @@ Die Anwendung interagiert mit dem Benutzer durch die Konsole. Benutzer können:
 Folgende Inputs des Benutzers, werden durch die Applikation geprüft, um ein reibungsloses Spielerlebnis für den Benutzer zu garantieren:
 - Menüauswahl-Validierung (Historie/Spielen) 
 - Gameplay-Entscheidungen (Hit/Stand) 
-- Fortsetzungs-Eingabe (Ja/Nein) 
+- Fortsetzungseingabe (Ja/Nein) 
 
 
 ---
@@ -58,9 +58,9 @@ Folgende Inputs des Benutzers, werden durch die Applikation geprüft, um ein rei
 
 ### 3. Dateiverarbeitung
 
-Die Applikation verwendet die Datei game_log.json, zum Auslesen der Historie und zum Speichern neuer Spielresultate.
+Die Applikation verwendet die Datei game_log.json, zum Auslesen der Historie und zum Speichern neuer Spielergebnisse.
 
-- **Output file:** `game_log.json`— Die Datei wird beim ersten Spiel generiert. In der Datei befinden sich die letzten Spielresultate. Die Spielresultate werden immer mit Zeitstempeln versehen.
+- **Output file:** `game_log.json`— Die Datei wird beim ersten Spiel generiert. In der Datei befinden sich die letzten Spielergebnisse. Die Spielergebnisse werden immer mit Zeitstempeln versehen.
 
 
 ## ⚙️ Implementierung
