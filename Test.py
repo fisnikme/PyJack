@@ -1,5 +1,3 @@
-import random
-
 # Kartenwerte
 karten = {
     '2': 2, '3': 3, '4': 4, '5': 5, '6': 6,
@@ -27,7 +25,10 @@ def punkte(hand):
         aces -= 1
     return total
 
-# Hand anzeigen
+
+while True:
+
+    # Hand anzeigen
 
 
 def zeige_hand(hand, name):
