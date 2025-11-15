@@ -1,4 +1,7 @@
 # Kartenwerte
+import random
+
+
 karten = {
     '2': 2, '3': 3, '4': 4, '5': 5, '6': 6,
     '7': 7, '8': 8, '9': 9, '10': 10,
@@ -9,7 +12,7 @@ karten = {
 
 
 def kartenstapel_erstellen():
-    deck = list(karten.keys()) * 4
+    deck = [karte for karte in karten.keys() for _ in range(4)]
     random.shuffle(deck)
     return deck
 
@@ -17,6 +20,12 @@ def kartenstapel_erstellen():
 
 
 def punkte(hand):
+    """
+    Berechnet die Gesamtpunktzahl einer Hand.
+    Ass(e) zählen zunächst als 11 Punkte, werden aber zu 1 Punkt umgewandelt,
+    falls die Gesamtpunktzahl über 21 liegt, indem für jedes Ass 10 Punkte abgezogen werden,
+    bis die Punktzahl 21 oder weniger beträgt oder keine Asse mehr übrig sind.
+    """
     total = sum(karten[karte] for karte in hand)
     # Ass als 1 zählen, wenn nötig
     aces = hand.count('A')
@@ -26,13 +35,19 @@ def punkte(hand):
     return total
 
 
-while True:
-
-    # Hand anzeigen
-
-
 def zeige_hand(hand, name):
+    """
+    Zeigt die aktuelle Hand und Punktzahl eines Spielers oder Dealers an.
+
+    Parameters:
+        hand (list): Die Kartenhand des Spielers oder Dealers.
+        name (str): Der Name des Spielers oder Dealers.
+
+    Output:
+        Gibt die Hand und die berechnete Punktzahl auf der Konsole aus.
+    """
     print(f"{name} Hand: {hand} → Punkte: {punkte(hand)}")
+# Entfernte fehlerhafte und doppelte blackjack-Definition und zeige_hand-Definition
 
 # Spiel starten
 
@@ -44,18 +59,27 @@ def blackjack():
 
     print("Willkommen bei Blackjack!")
     zeige_hand(spieler, "Spieler")
-    print(f"Dealer zeigt: {dealer[0]}")
-
-    # Spielerzug
-    while punkte(spieler) < 21:
-        zug = input("Möchtest du eine Karte ziehen? (j/n): ").lower()
+    # Dealerzug
+    while punkte(dealer) < 17:
+        if not deck:
+            print("Das Deck ist leer. Keine Karten mehr zum Ziehen für den Dealer.")
+            break
+        dealer.append(deck.pop())
         if zug == 'j':
-            spieler.append(deck.pop())
-            zeige_hand(spieler, "Spieler")
+            if deck:
+                spieler.append(deck.pop())
+                zeige_hand(spieler, "Spieler")
+            else:
+                print("Keine Karten mehr im Deck!")
+                break
         else:
             break
-
-    # Dealerzug
+    while punkte(dealer) < 17:
+        if deck:
+            dealer.append(deck.pop())
+        else:
+            print("Keine Karten mehr im Deck für den Dealer!")
+            break
     while punkte(dealer) < 17:
         dealer.append(deck.pop())
 
