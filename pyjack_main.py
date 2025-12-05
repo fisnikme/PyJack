@@ -57,7 +57,7 @@ def spielzustand_anzeigen(spieler_hand, dealer_hand, dealer_verborgen=False):
     # Parameter:
     # spieler_hand: Kartenliste des Spielers
     # dealer_hand: Kartenliste des Dealers
-    # dealer_verborgen: True, wenn zweite Karte des Dealers noch verborgen ist
+    # dealer_verborgen: True, wenn zweite Karte des Dealers noch verborgen sein soll
 
     print("\n" + "="*50)
 
@@ -359,17 +359,18 @@ def frage_neustart():
 # FUNKTIONEN: HAUPTSPIELABLAUF
 
 def spiel_durchfuehren():
-    """
-    Führt eine komplette Blackjack-Spielrunde durch.
-    """
+    # Führt eine komplette Spielrunde durch.
+
     # 1. Deck erstellen, Karten austeilen
     deck = deck_erstellen()
     # Das Deck wird als Liste von Strings (Kartenkennzeichen) zurückgegeben
+    # .pop entfernt 2 Kartern aus dem Deck und weisst sie spieler_hand zu
     spieler_hand = [deck.pop(), deck.pop()]
+    # .pop entfernt 2 Kartern aus dem Deck und weisst sie dealer_hand zu
     dealer_hand = [deck.pop(), deck.pop()]
 
     print("\n" + "="*50)
-    print("NEUE RUNDE GESTARTET!")
+    print("Neue Runde gestartet!")
     print("="*50)
 
     # 2. Spielzustand anzeigen (Dealer-Karte verborgen)

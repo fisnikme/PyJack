@@ -226,12 +226,33 @@
         "spieler": 22,
         "dealer": 21
       }
+    },
+    {
+      "runde": 12,
+      "start_time": "2025-12-05 16:18:06",
+      "gewinner": "Dealer",
+      "karten": {
+        "spieler": [
+          "6",
+          "4",
+          "8"
+        ],
+        "dealer": [
+          "6",
+          "3",
+          "K"
+        ]
+      },
+      "werte": {
+        "spieler": 18,
+        "dealer": 19
+      }
     }
   ],
   "statistiken": {
-    "spiele": 11,
+    "spiele": 12,
     "gewonnen_spieler": 5,
-    "gewonnen_dealer": 4,
+    "gewonnen_dealer": 5,
     "unentschieden": 2
   }
 }
