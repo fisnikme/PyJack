@@ -1,0 +1,237 @@
+{
+  "spiele": [
+    {
+      "runde": 1,
+      "start_time": "2025-11-29 11:20:21",
+      "gewinner": "Spieler",
+      "karten": {
+        "spieler": [
+          "A",
+          "K"
+        ],
+        "dealer": [
+          "10",
+          "7"
+        ]
+      },
+      "werte": {
+        "spieler": 21,
+        "dealer": 17
+      }
+    },
+    {
+      "runde": 2,
+      "start_time": "2025-11-29 11:20:21",
+      "gewinner": "Dealer",
+      "karten": {
+        "spieler": [
+          "10",
+          "9",
+          "5"
+        ],
+        "dealer": [
+          "K",
+          "2"
+        ]
+      },
+      "werte": {
+        "spieler": 24,
+        "dealer": 12
+      }
+    },
+    {
+      "runde": 3,
+      "start_time": "2025-11-29 11:20:21",
+      "gewinner": "Unentschieden",
+      "karten": {
+        "spieler": [
+          "9",
+          "8"
+        ],
+        "dealer": [
+          "9",
+          "8"
+        ]
+      },
+      "werte": {
+        "spieler": 17,
+        "dealer": 17
+      }
+    },
+    {
+      "runde": 4,
+      "start_time": "2025-11-29 11:22:41",
+      "gewinner": "Dealer",
+      "karten": {
+        "spieler": [
+          "3",
+          "K",
+          "2",
+          "8"
+        ],
+        "dealer": [
+          "6",
+          "9"
+        ]
+      },
+      "werte": {
+        "spieler": 23,
+        "dealer": 15
+      }
+    },
+    {
+      "runde": 5,
+      "start_time": "2025-11-29 11:22:46",
+      "gewinner": "Spieler",
+      "karten": {
+        "spieler": [
+          "8",
+          "7",
+          "4"
+        ],
+        "dealer": [
+          "5",
+          "3",
+          "10"
+        ]
+      },
+      "werte": {
+        "spieler": 19,
+        "dealer": 18
+      }
+    },
+    {
+      "runde": 6,
+      "start_time": "2025-12-05 11:15:00",
+      "gewinner": "Spieler",
+      "karten": {
+        "spieler": [
+          "K",
+          "9"
+        ],
+        "dealer": [
+          "2",
+          "J",
+          "3",
+          "K"
+        ]
+      },
+      "werte": {
+        "spieler": 19,
+        "dealer": 25
+      }
+    },
+    {
+      "runde": 7,
+      "start_time": "2025-12-05 11:15:09",
+      "gewinner": "Dealer",
+      "karten": {
+        "spieler": [
+          "K",
+          "3",
+          "A",
+          "Q"
+        ],
+        "dealer": [
+          "2",
+          "Q"
+        ]
+      },
+      "werte": {
+        "spieler": 24,
+        "dealer": 12
+      }
+    },
+    {
+      "runde": 8,
+      "start_time": "2025-12-05 11:15:16",
+      "gewinner": "Spieler",
+      "karten": {
+        "spieler": [
+          "6",
+          "K",
+          "3"
+        ],
+        "dealer": [
+          "7",
+          "9",
+          "K"
+        ]
+      },
+      "werte": {
+        "spieler": 19,
+        "dealer": 26
+      }
+    },
+    {
+      "runde": 9,
+      "start_time": "2025-12-05 11:15:19",
+      "gewinner": "Spieler",
+      "karten": {
+        "spieler": [
+          "9",
+          "K"
+        ],
+        "dealer": [
+          "8",
+          "Q"
+        ]
+      },
+      "werte": {
+        "spieler": 19,
+        "dealer": 18
+      }
+    },
+    {
+      "runde": 10,
+      "start_time": "2025-12-05 11:15:23",
+      "gewinner": "Unentschieden",
+      "karten": {
+        "spieler": [
+          "4",
+          "6",
+          "J"
+        ],
+        "dealer": [
+          "4",
+          "J",
+          "6"
+        ]
+      },
+      "werte": {
+        "spieler": 20,
+        "dealer": 20
+      }
+    },
+    {
+      "runde": 11,
+      "start_time": "2025-12-05 11:15:31",
+      "gewinner": "Dealer",
+      "karten": {
+        "spieler": [
+          "3",
+          "4",
+          "2",
+          "4",
+          "A",
+          "2",
+          "6"
+        ],
+        "dealer": [
+          "A",
+          "Q"
+        ]
+      },
+      "werte": {
+        "spieler": 22,
+        "dealer": 21
+      }
+    }
+  ],
+  "statistiken": {
+    "spiele": 11,
+    "gewonnen_spieler": 5,
+    "gewonnen_dealer": 4,
+    "unentschieden": 2
+  }
+}
