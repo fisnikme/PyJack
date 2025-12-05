@@ -1,10 +1,10 @@
 import json
 import random
-import os
+import os  # Funktionen um mit dem Dateisystem zu interagieren
 from datetime import datetime
 
 # KONSTANTEN
-
+# Mapping von Kartenkennzeichen zu Punktwerten
 KARTENWERTE = {
     '2': 2, '3': 3, '4': 4, '5': 5, '6': 6,
     '7': 7, '8': 8, '9': 9, '10': 10,
@@ -13,7 +13,7 @@ KARTENWERTE = {
 
 GAME_LOG_FILE = "game_log.json"
 
-# Basisstruktur für das Log
+# Basisstruktur für den Log
 DEFAULT_LOG = {
     "spiele": [],
     "statistiken": {
@@ -28,12 +28,10 @@ DEFAULT_LOG = {
 
 
 def deck_erstellen():
-    """
-    Erstellt ein Standard-Kartendeck mit 4 Farben und mischt es.
+    # Erstellt ein Standard-Kartendeck mit 4 Farben und mischt es.
+    # Rückgabe:
+    # Liste von Kartenkennzeichen (z.B. ['A', '2'])
 
-    Rückgabe:
-        Liste von Kartenkennzeichen (z.B. ['A', '2', ..., 'K', 'A', ...])
-    """
     deck = [karte for karte in KARTENWERTE.keys() for _ in range(4)]
     random.shuffle(deck)
     return deck
@@ -55,14 +53,12 @@ def kartenwert_berechnen(hand):
 
 
 def spielzustand_anzeigen(spieler_hand, dealer_hand, dealer_verborgen=False):
-    """
-    Zeigt den aktuellen Spielzustand an.
+    # Zeigt den aktuellen Spielzustand an.
+    # Parameter:
+    # spieler_hand: Kartenliste des Spielers
+    # dealer_hand: Kartenliste des Dealers
+    # dealer_verborgen: True, wenn zweite Karte des Dealers noch verborgen ist
 
-    Parameter:
-        spieler_hand: Kartenliste des Spielers
-        dealer_hand: Kartenliste des Dealers
-        dealer_verborgen: True, wenn zweite Karte des Dealers noch verborgen ist
-    """
     print("\n" + "="*50)
 
     # Dealer-Hand anzeigen
@@ -83,14 +79,12 @@ def spielzustand_anzeigen(spieler_hand, dealer_hand, dealer_verborgen=False):
 def spieler_zug(hand, deck):
     """
     Führt einen Spielerzug durch (Hit/Stand).
-
     Der Spieler wird solange nach Hit/Stand gefragt, bis er Stand wählt
     oder über 21 geht.
 
     Parameter:
         hand: Aktuelle Kartenliste des Spielers
         deck: Verbleibendes Kartendeck
-
     Rückgabe:
         Aktualisierte Kartenliste des Spielers
     """
@@ -330,7 +324,7 @@ def menu_hauptmenu():
     #    Zeigt das Hauptmenü und gibt die validierte Benutzerauswahl zurück.
     while True:
         print("\n" + "="*60)
-        print("PYJACK - BLACKJACK-SPIEL")
+        print("PYJACK - Hauptmenü")
         print("="*60)
         print("1. Spielen")
         print("2. Spielhistorie anzeigen")
@@ -431,9 +425,8 @@ def main():
     """
     Hauptprogramm: Menüschleife für PyJack.
     """
-    print("\n" + "="*60)
+    print("\n")
     print("Willkommen zu PyJack!")
-    print("="*60)
 
     while True:
         wahl = menu_hauptmenu()
