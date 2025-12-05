@@ -1,13 +1,3 @@
-"""
-PyJack - Ein konsolenbasiertes Blackjack-Spiel.
-
-Niveau: Erstsemester-Projekt (Wirtschaftsinformatik).
-Fokus: Lesbarkeit, grundlegende Datenstrukturen (Listen, Dictionaries),
-Schleifen, Bedingte Anweisungen, Funktionen, Klassen und Dateiverarbeitung (JSON).
-
-Basierend auf den Anforderungen aus dem README.pdf.
-"""
-
 import json
 import random
 import os
@@ -23,7 +13,7 @@ KARTENWERTE = {
 
 GAME_LOG_FILE = "game_log.json"
 
-# Basisstruktur für das Log (einfach und klar)
+# Basisstruktur für das Log
 DEFAULT_LOG = {
     "spiele": [],
     "statistiken": {
@@ -50,7 +40,7 @@ def deck_erstellen():
 
 
 def kartenwert_berechnen(hand):
-    """Berechnet die Punkte einer Hand (Ass als 11 oder 1)."""
+    # Berechnet die Punkte einer Hand (Ass als 11 oder 1).
     total = 0
     for karte in hand:
         total += KARTENWERTE.get(karte, 0)
