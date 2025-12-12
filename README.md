@@ -77,7 +77,10 @@ Die Applikation verwendet die Datei game_log.json, zum Auslesen der Historie und
 >tbd
 
 ### Verwendete Libraries 
->tbd
+json
+random
+os
+datetime
 
 
 ## 👥 Gruppe
