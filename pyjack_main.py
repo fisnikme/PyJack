@@ -39,15 +39,15 @@ def deck_erstellen():
 
 def kartenwert_berechnen(hand):
     # Berechnet die Punkte einer Hand (Ass als 11 oder 1).
-    total = 0
+    punkte = 0
     for karte in hand:
-        total += KARTENWERTE.get(karte, 0)
-    # Asse bei Bedarf von 11 auf 1 reduzieren
-    aces = hand.count('A')
-    while total > 21 and aces:
-        total -= 10
-        aces -= 1
-    return total
+        punkte += KARTENWERTE.get(karte, 0)
+    # Asse bei Bedarf von 11 auf 1 reduzieren, wenn Punkte über 21
+    anzahl_asse = hand.count('A')
+    while punkte > 21 and anzahl_asse > 0:
+        punkte -= 10  # Ein Ass von 11 auf 1 reduzieren
+        anzahl_asse -= 1
+    return punkte
 
 # FUNKTIONEN: SPIELABLAUF
 
@@ -77,17 +77,10 @@ def spielzustand_anzeigen(spieler_hand, dealer_hand, dealer_verborgen=False):
 
 
 def spieler_zug(hand, deck):
-    """
-    Führt einen Spielerzug durch (Hit/Stand).
-    Der Spieler wird solange nach Hit/Stand gefragt, bis er Stand wählt
-    oder über 21 geht.
+    # Führt einen Spielerzug durch (Hit/Stand).
+    # Der Spieler wird solange nach Hit/Stand gefragt, bis er Stand wählt
+    # oder über 21 geht.
 
-    Parameter:
-        hand: Aktuelle Kartenliste des Spielers
-        deck: Verbleibendes Kartendeck
-    Rückgabe:
-        Aktualisierte Kartenliste des Spielers
-    """
     while kartenwert_berechnen(hand) < 21:
         print("\nDeine aktuelle Hand:")
         # Hier wird nur die Spielerhand angezeigt, da der Dealer-Status bekannt ist
@@ -123,7 +116,7 @@ def dealer_zug(hand, deck):
     # deck: Verbleibendes Kartendeck
 
     # Rückgabe:
-    #   Aktualisierte Kartenliste des Dealers
+    # Aktualisierte Kartenliste des Dealers
     while kartenwert_berechnen(hand) < 17:
         if deck:
             hand.append(deck.pop())
@@ -137,7 +130,7 @@ def dealer_zug(hand, deck):
 def gewinner_ermitteln(spieler_punkte, dealer_punkte):
     # Bestimmt den Gewinner basierend auf den Kartenwerten.
     # Rückgabe:
-    #   String: "Spieler", "Dealer" oder "Unentschieden"
+    # String: "Spieler", "Dealer" oder "Unentschieden"
     if spieler_punkte > 21:
         return "Dealer"
     elif dealer_punkte > 21:
@@ -157,25 +150,43 @@ def game_log_laden():
     if not os.path.exists(GAME_LOG_FILE):
         # Rückgabe einer Kopie, damit der Aufrufer das Original nicht verändert
         return {
-            DEFAULT_LOG
+            "spiele": [],
+            "statistiken": {
+                "spiele": 0,
+                "gewonnen_spieler": 0,
+                "gewonnen_dealer": 0,
+                "unentschieden": 0
+            }
         }
 
     try:
         with open(GAME_LOG_FILE, 'r', encoding='utf-8') as f:
             data = json.load(f)
             # Wenn Format nicht stimmt, ersetze durch Default
-            if not isinstance(data, dict) or 'spiele' not in data:
+            if not isinstance(data, dict) or 'spiele' not in data or 'statistiken' not in data:
                 print(
                     f"Warnung: {GAME_LOG_FILE} hat unerwartetes Format. Überspringe Inhalte.")
                 return {
-                    DEFAULT_LOG
+                    "spiele": [],
+                    "statistiken": {
+                        "spiele": 0,
+                        "gewonnen_spieler": 0,
+                        "gewonnen_dealer": 0,
+                        "unentschieden": 0
+                    }
                 }
             return data
-    except Exception:
+    except (IOError, json.JSONDecodeError):
         print(
             f"Warnung: Fehler beim Laden von {GAME_LOG_FILE}. Nutze leeren Log.")
         return {
-            DEFAULT_LOG
+            "spiele": [],
+            "statistiken": {
+                "spiele": 0,
+                "gewonnen_spieler": 0,
+                "gewonnen_dealer": 0,
+                "unentschieden": 0
+            }
         }
 
 
@@ -193,13 +204,11 @@ def game_log_speichern(log) -> None:
 
 def ergebnis_protokollieren(spieler_hand, dealer_hand, gewinner):
     # Protokolliert ein Spielergebnis in game_log.json.
-
     # Aktualisiert sowohl die Spielliste als auch die Gesamtstatistiken.
-
     # Parameter:
-    #    spieler_hand: Kartenliste des Spielers
-    #    dealer_hand: Kartenliste des Dealers
-    #    gewinner: String ("Spieler", "Dealer" oder "Unentschieden")
+    # spieler_hand: Kartenliste des Spielers
+    # dealer_hand: Kartenliste des Dealers
+    # gewinner: String ("Spieler", "Dealer" oder "Unentschieden")
 
     log = game_log_laden()
     rundennummer = len(log.get('spiele', [])) + 1
@@ -219,12 +228,15 @@ def ergebnis_protokollieren(spieler_hand, dealer_hand, gewinner):
     stats = log.setdefault('statistiken', {
                            "spiele": 0, "gewonnen_spieler": 0, "gewonnen_dealer": 0, "unentschieden": 0})
     stats['spiele'] = stats.get('spiele', 0) + 1
-    if gewinner == 'Spieler':
-        stats['gewonnen_spieler'] = stats.get('gewonnen_spieler', 0) + 1
-    elif gewinner == 'Dealer':
-        stats['gewonnen_dealer'] = stats.get('gewonnen_dealer', 0) + 1
-    else:
-        stats['unentschieden'] = stats.get('unentschieden', 0) + 1
+    # Statistik für Gewinner erhöhen
+    gewinner_keys = {
+        'Spieler': 'gewonnen_spieler',
+        'Dealer': 'gewonnen_dealer',
+        'Unentschieden': 'unentschieden'
+    }
+    if gewinner in gewinner_keys:
+        stats[gewinner_keys[gewinner]] = stats.get(
+            gewinner_keys[gewinner], 0) + 1
 
     game_log_speichern(log)
 
@@ -288,7 +300,7 @@ def menu_spielhistorie_anzeigen():
 
 
 def menu_hauptmenu():
-    #    Zeigt das Hauptmenü und gibt die validierte Benutzerauswahl zurück.
+    # Zeigt das Hauptmenü und gibt die validierte Benutzerauswahl zurück.
     while True:
         print("\n" + "="*60)
         print("PyJack - Hauptmenü")
