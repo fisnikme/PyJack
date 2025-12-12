@@ -57,7 +57,7 @@ def spielzustand_anzeigen(spieler_hand, dealer_hand, dealer_verborgen=False):
     # Parameter:
     # spieler_hand: Kartenliste des Spielers
     # dealer_hand: Kartenliste des Dealers
-    # dealer_verborgen: True, wenn zweite Karte des Dealers noch verborgen sein soll
+    # dealer_verborgen: True wenn zweite Karte des Dealers noch verborgen
 
     print("\n" + "="*50)
 
@@ -180,12 +180,10 @@ def game_log_laden():
 
 
 def game_log_speichern(log) -> None:
-    """
-    Speichert die Spielhistorie in game_log.json.
+    # Speichert die Spielhistorie in game_log.json.
 
-    Parameter:
-        log: Dictionary mit Spielhistorie und Statistiken
-    """
+    # Parameter:
+    # log: Dictionary mit Spielhistorie und Statistiken
     try:
         with open(GAME_LOG_FILE, 'w', encoding='utf-8') as f:
             json.dump(log, f, indent=2, ensure_ascii=False)
@@ -194,16 +192,15 @@ def game_log_speichern(log) -> None:
 
 
 def ergebnis_protokollieren(spieler_hand, dealer_hand, gewinner):
-    """
-    Protokolliert ein Spielergebnis in game_log.json.
+    # Protokolliert ein Spielergebnis in game_log.json.
 
-    Aktualisiert sowohl die Spielliste als auch die Gesamtstatistiken.
+    # Aktualisiert sowohl die Spielliste als auch die Gesamtstatistiken.
 
-    Parameter:
-        spieler_hand: Kartenliste des Spielers
-        dealer_hand: Kartenliste des Dealers
-        gewinner: String ("Spieler", "Dealer" oder "Unentschieden")
-    """
+    # Parameter:
+    #    spieler_hand: Kartenliste des Spielers
+    #    dealer_hand: Kartenliste des Dealers
+    #    gewinner: String ("Spieler", "Dealer" oder "Unentschieden")
+
     log = game_log_laden()
     rundennummer = len(log.get('spiele', [])) + 1
     spieler_punkte = kartenwert_berechnen(spieler_hand)
@@ -231,8 +228,8 @@ def ergebnis_protokollieren(spieler_hand, dealer_hand, gewinner):
 
     game_log_speichern(log)
 
-
 # FUNKTIONEN: MENÜNAVIGATION & VALIDIERUNG
+
 
 def menu_spielhistorie_anzeigen():
     # Zeigt die Spielhistorie und Statistiken aus game_log.json an.
@@ -262,7 +259,7 @@ def menu_spielhistorie_anzeigen():
         # Zeige die letzten 5 Einträge
         for spiel in spiele_liste[-5:]:
 
-            # Hier verwenden wir .get() mit Standardwerten, um KeyErrors abzufangen
+            # Verwendung von.get() mit Standardwerten, um KeyErrors abzufangen
             runde = spiel.get('runde', 'N/A')
             start_time = spiel.get('start_time', 'Unbekannt')
 
@@ -294,7 +291,7 @@ def menu_hauptmenu():
     #    Zeigt das Hauptmenü und gibt die validierte Benutzerauswahl zurück.
     while True:
         print("\n" + "="*60)
-        print("PYJACK - Hauptmenü")
+        print("PyJack - Hauptmenü")
         print("="*60)
         print("1. Spielen")
         print("2. Spielhistorie anzeigen")
@@ -314,7 +311,7 @@ def menu_hauptmenu():
 
 
 def frage_neustart():
-    #    Fragt den Spieler, ob er eine neue Runde spielen möchte.
+    # Fragt den Spieler, ob er eine neue Runde spielen möchte.
     # .strip= entfernt leezeichen
     while True:
         antwort = input(
@@ -339,7 +336,7 @@ def spiel_durchfuehren():
     # .pop entfernt 2 Kartern aus dem Deck und weisst sie dealer_hand zu
     dealer_hand = [deck.pop(), deck.pop()]
 
-    print("\n" + "="*50)
+    print("\n")
     print("Neue Runde gestartet!💸")
 
     # 2. Spielzustand anzeigen (Dealer-Karte verborgen)
@@ -359,7 +356,7 @@ def spiel_durchfuehren():
         ergebnis_protokollieren(spieler_hand, dealer_hand, "Dealer")
         return
 
-    # 4. Dealer-Zug (Automatik)
+    # 4. Dealer Zug (Automatik)
     print("\nDealer spielt automatisch...")
     # Die Funktion dealer_zug wird aufgerufen und aktualisiert die Hand direkt
     dealer_hand = dealer_zug(dealer_hand, deck)
@@ -386,16 +383,15 @@ def spiel_durchfuehren():
     print("="*50 + "\n")
 
     # 6. Ergebnis protokollieren
-    # Wir protokollieren den korrekten Gewinner, der durch gewinner_ermitteln bestimmt wurde
+    # Protokollieren des Gewinners,(durch gewinner_ermitteln bestimmt)
     ergebnis_protokollieren(spieler_hand, dealer_hand, gewinner)
 
+# Hauptfunktion
 
-# HAUPTPROGRAMM
 
 def main():
-    """
-    Hauptprogramm: Menüschleife für PyJack.
-    """
+    # Menüschleife
+
     print("\n")
     print("Willkommen zu PyJack!")
 
