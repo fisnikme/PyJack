@@ -13,7 +13,7 @@ KARTENWERTE = {
 
 GAME_LOG_FILE = "game_log.json"
 
-# Basisstruktur für den Log
+# Basisstruktur für den Log ---> default log als variable für untenstehende log repetitions verwenden
 DEFAULT_LOG = {
     "spiele": [],
     "statistiken": {
