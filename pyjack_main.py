@@ -13,7 +13,7 @@ KARTENWERTE = {
 
 GAME_LOG_FILE = "game_log.json"
 
-# Basisstruktur für den Log ---> default log als variable für untenstehende log repetitions verwenden
+# Basisstruktur für den Log, wiederverwendung im Code
 DEFAULT_LOG = {
     "spiele": [],
     "statistiken": {
@@ -93,7 +93,7 @@ def spieler_zug(hand, deck):
         # Hier wird nur die Spielerhand angezeigt, da der Dealer-Status bekannt ist
         spieler_punkte = kartenwert_berechnen(hand)
         print(f"Spieler Hand: {hand} → {spieler_punkte} Punkte")
-
+        print("\n")
         entscheidung = input("Hit (h) oder Stand (s)? ").strip().lower()
 
         # Validierung der Eingabe
@@ -116,19 +116,14 @@ def spieler_zug(hand, deck):
 
 
 def dealer_zug(hand, deck):
-    """
-    Führt den Dealer-Automatik durch (Hit bis 17, dann Stand).
+    # Der Dealer zieht so lange Karten, bis die Punktzahl ≥ 17 ist.
 
-    Der Dealer zieht so lange Karten, bis die Punktzahl ≥ 17 ist.
-    Dies ist die Standard-Blackjack-Dealer-Regel.
+    # Parameter:
+    # hand: Aktuelle Kartenliste des Dealers
+    # deck: Verbleibendes Kartendeck
 
-    Parameter:
-        hand: Aktuelle Kartenliste des Dealers
-        deck: Verbleibendes Kartendeck
-
-    Rückgabe:
-        Aktualisierte Kartenliste des Dealers
-    """
+    # Rückgabe:
+    #   Aktualisierte Kartenliste des Dealers
     while kartenwert_berechnen(hand) < 17:
         if deck:
             hand.append(deck.pop())
@@ -140,16 +135,9 @@ def dealer_zug(hand, deck):
 
 
 def gewinner_ermitteln(spieler_punkte, dealer_punkte):
-    """
-    Bestimmt den Gewinner basierend auf den Kartenwerten.
-
-    Parameter:
-        spieler_punkte: Kartenwert des Spielers
-        dealer_punkte: Kartenwert des Dealers
-
-    Rückgabe:
-        String: "Spieler", "Dealer" oder "Unentschieden"
-    """
+    # Bestimmt den Gewinner basierend auf den Kartenwerten.
+    # Rückgabe:
+    #   String: "Spieler", "Dealer" oder "Unentschieden"
     if spieler_punkte > 21:
         return "Dealer"
     elif dealer_punkte > 21:
@@ -161,21 +149,15 @@ def gewinner_ermitteln(spieler_punkte, dealer_punkte):
     else:
         return "Unentschieden"
 
-
 # FUNKTIONEN: DATEIVERARBEITUNG & PROTOKOLLIERUNG
+
 
 def game_log_laden():
     """Lädt game_log.json oder gibt eine Standardstruktur zurück."""
     if not os.path.exists(GAME_LOG_FILE):
         # Rückgabe einer Kopie, damit der Aufrufer das Original nicht verändert
         return {
-            "spiele": [],
-            "statistiken": {
-                "spiele": 0,
-                "gewonnen_spieler": 0,
-                "gewonnen_dealer": 0,
-                "unentschieden": 0
-            }
+            DEFAULT_LOG
         }
 
     try:
@@ -186,26 +168,14 @@ def game_log_laden():
                 print(
                     f"Warnung: {GAME_LOG_FILE} hat unerwartetes Format. Überspringe Inhalte.")
                 return {
-                    "spiele": [],
-                    "statistiken": {
-                        "spiele": 0,
-                        "gewonnen_spieler": 0,
-                        "gewonnen_dealer": 0,
-                        "unentschieden": 0
-                    }
+                    DEFAULT_LOG
                 }
             return data
     except Exception:
         print(
             f"Warnung: Fehler beim Laden von {GAME_LOG_FILE}. Nutze leeren Log.")
         return {
-            "spiele": [],
-            "statistiken": {
-                "spiele": 0,
-                "gewonnen_spieler": 0,
-                "gewonnen_dealer": 0,
-                "unentschieden": 0
-            }
+            DEFAULT_LOG
         }
 
 
@@ -345,6 +315,7 @@ def menu_hauptmenu():
 
 def frage_neustart():
     #    Fragt den Spieler, ob er eine neue Runde spielen möchte.
+    # .strip= entfernt leezeichen
     while True:
         antwort = input(
             "Möchtest du eine weitere Runde spielen? (j/n): ").strip().lower()
@@ -360,7 +331,6 @@ def frage_neustart():
 
 def spiel_durchfuehren():
     # Führt eine komplette Spielrunde durch.
-
     # 1. Deck erstellen, Karten austeilen
     deck = deck_erstellen()
     # Das Deck wird als Liste von Strings (Kartenkennzeichen) zurückgegeben
@@ -370,14 +340,14 @@ def spiel_durchfuehren():
     dealer_hand = [deck.pop(), deck.pop()]
 
     print("\n" + "="*50)
-    print("Neue Runde gestartet!")
-    print("="*50)
+    print("Neue Runde gestartet!💸")
 
     # 2. Spielzustand anzeigen (Dealer-Karte verborgen)
     spielzustand_anzeigen(spieler_hand, dealer_hand, dealer_verborgen=True)
 
     # 3. Spieler-Zug
-    # Die Funktion spieler_zug wird aufgerufen und aktualisiert die Hand direkt (durch Listen-Referenz)
+    # Die Funktion spieler_zug wird aufgerufen und
+    # aktualisiert die Hand direkt (durch Listen-Referenz)
     spieler_hand = spieler_zug(spieler_hand, deck)
     spieler_punkte = kartenwert_berechnen(spieler_hand)
 
