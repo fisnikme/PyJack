@@ -1,9 +1,8 @@
 import json
 import random
-import os  # Funktionen um mit dem Dateisystem zu interagieren
+import os  # Funktionen um mit dem JSON zu interagieren
 from datetime import datetime
 
-# KONSTANTEN
 # Mapping von Kartenkennzeichen zu Punktwerten
 KARTENWERTE = {
     '2': 2, '3': 3, '4': 4, '5': 5, '6': 6,
@@ -13,7 +12,7 @@ KARTENWERTE = {
 
 GAME_LOG_FILE = "game_log.json"
 
-# Basisstruktur für den Log, wiederverwendung im Code
+# Basisstruktur für den Log zur wiederverwendung im Code
 DEFAULT_LOG = {
     "spiele": [],
     "statistiken": {
@@ -24,21 +23,17 @@ DEFAULT_LOG = {
     }
 }
 
-# FUNKTIONEN: KARTENDECK-VERWALTUNG
-
 
 def deck_erstellen():
     # Erstellt ein Standard-Kartendeck mit 4 Farben und mischt es.
     # Rückgabe:
-    # Liste von Kartenkennzeichen (z.B. ['A', '2'])
-
+    # Liste von Kartenkennzeichen (['A', '2'])
     deck = [karte for karte in KARTENWERTE.keys() for _ in range(4)]
     random.shuffle(deck)
     return deck
 
 
 def kartenwert_berechnen(hand):
-    # Berechnet die Punkte einer Hand (Ass als 11 oder 1).
     punkte = 0
     for karte in hand:
         punkte += KARTENWERTE.get(karte, 0)
@@ -54,9 +49,6 @@ def kartenwert_berechnen(hand):
 
 def spielzustand_anzeigen(spieler_hand, dealer_hand, dealer_verborgen=False):
     # Zeigt den aktuellen Spielzustand an.
-    # Parameter:
-    # spieler_hand: Kartenliste des Spielers
-    # dealer_hand: Kartenliste des Dealers
     # dealer_verborgen: True wenn zweite Karte des Dealers noch verborgen
 
     print("\n" + "="*50)
@@ -83,7 +75,6 @@ def spieler_zug(hand, deck):
 
     while kartenwert_berechnen(hand) < 21:
         print("\nDeine aktuelle Hand:")
-        # Hier wird nur die Spielerhand angezeigt, da der Dealer-Status bekannt ist
         spieler_punkte = kartenwert_berechnen(hand)
         print(f"Spieler Hand: {hand} → {spieler_punkte} Punkte")
         print("\n")
@@ -205,9 +196,6 @@ def game_log_speichern(log) -> None:
 def ergebnis_protokollieren(spieler_hand, dealer_hand, gewinner):
     # Protokolliert ein Spielergebnis in game_log.json.
     # Aktualisiert sowohl die Spielliste als auch die Gesamtstatistiken.
-    # Parameter:
-    # spieler_hand: Kartenliste des Spielers
-    # dealer_hand: Kartenliste des Dealers
     # gewinner: String ("Spieler", "Dealer" oder "Unentschieden")
 
     log = game_log_laden()
@@ -245,8 +233,7 @@ def ergebnis_protokollieren(spieler_hand, dealer_hand, gewinner):
 
 def menu_spielhistorie_anzeigen():
     # Zeigt die Spielhistorie und Statistiken aus game_log.json an.
-
-    # WICHTIG: Verwendet .get() für den robusten Zugriff auf JSON-Daten,
+    # Verwendet .get() für den robusten Zugriff auf JSON-Daten,
     # um KeyErrors zu vermeiden, falls ältere Log-Einträge unvollständig sind.
     log = game_log_laden()
 

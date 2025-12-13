@@ -12,7 +12,7 @@ PyJack ist ein einfach zugängliches Spiel gegen Langeweile. Spielenden können 
 
 **User stories:**
 - Als Nutzer möchte ich sofort nach Sieg oder Niederlage ein neues Spiel starten können. 
-- Als Nutzer möchte eine Karte ziehen oder bei der aktuellen Hand bleiben können. 
+- Als Nutzer möchte ich eine Karte ziehen oder bei der aktuellen Hand bleiben können. 
 - Als Nutzer möchte ich informiert werden, ob ich gewonnen oder verloren habe. 
 - Als Nutzer möchte ich, dass Gewinne und Verluste in einer Datei protokolliert werden, damit ich meine Gewinn-/Verlustrate verfolgen kann. 
 
@@ -71,7 +71,11 @@ Die Applikation verwendet die Datei game_log.json, zum Auslesen der Historie und
 - Tbd
 
 ### 📂 Repository Struktur
->tbd
+3-25HS.W-B-WI-GrPro_morse-code-converter/
+├── .gitignore              # files git should ignore
+├── main.py                 # main program logic (console application)
+├── game_log.json           # JSON Datei - speichert Spiel
+└── README.md               # Projektbeschreibung und Dokumentation
 
 ### Wie startet man die Anwendung
 >tbd
