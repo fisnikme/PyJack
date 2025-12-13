@@ -25,17 +25,17 @@ DEFAULT_LOG = {
 
 
 def deck_erstellen():
-    # Erstellt ein Standard-Kartendeck mit 4 Farben und mischt es.
-    # Rückgabe: iste von Kartenkennzeichen (['A', '2'])
+    # Erstellt ein Standard-Kartendeck und mischt es.
+    # Rückgabe: Liste von Kartenkennzeichen (['A', '2'])
     deck = [karte for karte in KARTENWERTE.keys() for _ in range(4)]
     random.shuffle(deck)
     return deck
 
 
 def kartenwert_berechnen(hand):
-    punkte = 0
+    punkte = 0  # Sicherheitsaspekt, damit vor Berechnug Punkte = 0
     for karte in hand:
-        punkte += KARTENWERTE.get(karte, 0)
+        punkte += KARTENWERTE.get(karte, 0)  # Gibt den Kartenwert zurück
     # Asse bei Bedarf von 11 auf 1 reduzieren, wenn Punkte über 21
     anzahl_asse = hand.count('A')
     while punkte > 21 and anzahl_asse > 0:
