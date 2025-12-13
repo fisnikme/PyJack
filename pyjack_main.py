@@ -100,11 +100,6 @@ def spieler_zug(hand, deck):
 
 def dealer_zug(hand, deck):
     # Der Dealer zieht so lange Karten, bis die Punktzahl ≥ 17 ist.
-
-    # Parameter:
-    # hand: Aktuelle Kartenliste des Dealers
-    # deck: Verbleibendes Kartendeck
-
     # Rückgabe:
     # Aktualisierte Kartenliste des Dealers
     while kartenwert_berechnen(hand) < 17:
