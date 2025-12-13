@@ -1,6 +1,6 @@
 import json
 import random
-import os  # Funktionen um mit dem JSON zu interagieren
+import os  # Library um mit dem JSON zu interagieren
 from datetime import datetime
 
 # Mapping von Kartenkennzeichen zu Punktwerten
@@ -26,8 +26,7 @@ DEFAULT_LOG = {
 
 def deck_erstellen():
     # Erstellt ein Standard-Kartendeck mit 4 Farben und mischt es.
-    # Rückgabe:
-    # Liste von Kartenkennzeichen (['A', '2'])
+    # Rückgabe: iste von Kartenkennzeichen (['A', '2'])
     deck = [karte for karte in KARTENWERTE.keys() for _ in range(4)]
     random.shuffle(deck)
     return deck
