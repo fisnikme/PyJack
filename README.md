@@ -106,10 +106,48 @@ PyJack
 ```
 ---
 
-# Wie startet man die Anwendung
->tbd
+## 🖥️ Wie startet man die Anwendung
+### Windows-Version herunterladen und starten
 
-### Verwendete Libraries 
+Die ausführbare Windows-Version von **PyJack** kann direkt über GitHub Releases heruntergeladen werden.
+
+### Download
+1. Öffnen Sie die Release-Seite des Projekts:
+    https://github.com/fisnikme/PyJack/releases/latest
+
+2. Unter **Assets** finden Sie die Datei:
+   **PyJack.exe**
+
+3. Klicken Sie auf **PyJack.exe**, um die Datei herunterzuladen.
+
+### Ausführen unter Windows
+1. Öffnen Sie den Ordner, in dem die Datei gespeichert wurde  
+2. Doppelklicken Sie auf **PyJack.exe**, um das Spiel zu starten  
+3. Es ist **keine Python-Installation** erforderlich
+
+#### Hinweis
+Beim ersten Start kann Windows Defener eine Warnung anzeigen.  
+In diesem Fall:
+- Auf **Weitere Informationen** klicken  
+- Dann **Trotzdem ausführen** wählen 
+
+### MacOS-Version/alternativer Zugang - ausführen im Terminal
+1.  Öffnen Sie das Terminal Ihres Clients:
+
+2. Klonen Sie das Repository in dem Sie folgenden Command im Terminal eingeben:
+  ```bash
+git clone https://github.com/fisnikme/PyJack.git
+```
+3. Wechseln Sie mit folgendem Command in den Projektordner:
+```bash
+cd PyJack
+```
+4. Sie können die Anwendung nun mit folgendem Command starten:
+```bash
+python pyjack_main.py
+```
+
+## Verwendete Libraries 
 - json: Speichern und Laden der Spielhistorie
 - random: Mischen des Kartendecks und zufälliges Austeilen der Karten
 - os: Prüfen ob Log-File bereits existiert, bevor sie erstellt wird
