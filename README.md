@@ -117,14 +117,10 @@ PyJack
 
 
 ## 👥 Gruppe & Contribution
-| **Name**  | **Contribution**                                                                 |
+| **Name**  | **Contribution**                                                              |
 |-----------|-------------------------------------------------------------------------------|
 | **Andri** | Testing, UI-Design, Release, Funktionen programmieren                         |
 | **Fisnik**| Kernlogik des Spiels, Funktionen programmieren, GitHub-Verwaltung             |
-
-
-## 🤝 Contributing
->tbd
 
 ## 📝 Lizenz
 
