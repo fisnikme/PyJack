@@ -33,6 +33,7 @@ Folgende Anforderungen sind an das Projekt gestellt worden:
 2. Datenvalidierung
 3. Dateiverarbeitung
 
+
 ---
 
 ### 1. Interaktive Konsolenanwendung: 
@@ -48,10 +49,36 @@ Die Anwendung interagiert mit dem Benutzer durch die Konsole. Benutzer können:
 ### 2. Validierung von Daten:
 
 Folgende Inputs des Benutzers, werden durch die Applikation geprüft, um ein reibungsloses Spielerlebnis für den Benutzer zu garantieren:
-- Menüauswahl-Validierung (Historie/Spielen)
-- Gameplay-Entscheidungen (Hit/Stand) 
-- Fortsetzungseingabe (Ja/Nein)
+* **Menüauswahl-Validierung (Historie/Spielen):** Stellt sicher, dass im Menü ausschliesslich nummerische Eingaben akzeptiert werden.
+* **Gameplay-Entscheidungen (Hit/Stand):** Leere Eingaben, Leerzeichen sowie Gross- und Kleinschreibung werden ignoriert. 
+* **Fortsetzungseingabe (Ja/Nein):** 
 
+Beispiele:
+
+```python
+ while True:
+        antwort = input(
+            "Möchtest du eine weitere Runde spielen? (j/n): ").strip().lower()
+        if antwort == 'j':
+            return True
+        elif antwort == 'n':
+            return False
+        else:
+            print("Ungültige Eingabe. Bitte 'j' (Ja) oder 'n' (Nein) eingeben."
+```
+
+```python
+wahl = input("Wähle eine Option (1/2/3): ").strip()
+
+        if wahl == "1":
+            return "spielen"
+        elif wahl == "2":
+            return "historie"
+        elif wahl == "3":
+            return "beenden"
+        else:
+            print("Ungültige Eingabe. Bitte 1, 2 oder 3 eingeben.")
+```
 ---
 
 
@@ -67,14 +94,13 @@ Die Applikation verwendet die Datei game_log.json, zum Auslesen der Historie und
 ### Technologie
 - Python 3.x
 - Umgebung: GitHub Codespaces
-- Tbd
 
 ### 📂 Repository Struktur
-3-25HS.W-B-WI-GrPro_morse-code-converter/
-├── .gitignore              # files git should ignore
-├── main.py                 # main program logic (console application)
-├── game_log.json           # JSON Datei - speichert Spiel
-└── README.md               # Projektbeschreibung und Dokumentation
+PyJack
+├── pyjack_main.py     # Hauptprogramm (Spielablauf & Menü)
+├── game_log.json      # Automatisch generierte Spielhistorie
+├── README.md          # Dokumentation
+└── .gitignore
 
 ### Wie startet man die Anwendung
 >tbd
