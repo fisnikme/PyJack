@@ -96,13 +96,17 @@ Die Applikation verwendet die Datei game_log.json, zum Auslesen der Historie und
 - Umgebung: GitHub Codespaces
 
 ### 📂 Repository Struktur
+
+```
 PyJack
 ├── pyjack_main.py     # Hauptprogramm (Spielablauf & Menü)
 ├── game_log.json      # Automatisch generierte Spielhistorie
 ├── README.md          # Dokumentation
-└── .gitignore
+└── .gitignore         # Dateien, welche von Git ignoriert werden sollten
+```
+---
 
-### Wie startet man die Anwendung
+# Wie startet man die Anwendung
 >tbd
 
 ### Verwendete Libraries 
