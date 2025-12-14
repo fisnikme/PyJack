@@ -116,11 +116,11 @@ PyJack
 - datetime: Zeitstempel für jedes gespeicherte Spielergebnis 
 
 
-## 👥 Gruppe
-
-| Andri Schwab   | 
-| Fisnik Mehmeti |
-
+## 👥 Gruppe & Contribution
+| **Name**  | **Contribution**                                                                 |
+|-----------|-------------------------------------------------------------------------------|
+| **Andri** | Testing, UI-Design, Release, Funktionen programmieren                         |
+| **Fisnik**| Kernlogik des Spiels, Funktionen programmieren, GitHub-Verwaltung             |
 
 
 ## 🤝 Contributing
