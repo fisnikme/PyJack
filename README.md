@@ -64,7 +64,7 @@ Beispiele:
         elif antwort == 'n':
             return False
         else:
-            print("Ungültige Eingabe. Bitte 'j' (Ja) oder 'n' (Nein) eingeben."
+            print("Ungültige Eingabe. Bitte 'j' (Ja) oder 'n' (Nein) eingeben.")
 ```
 
 ```python
