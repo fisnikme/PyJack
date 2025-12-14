@@ -48,10 +48,9 @@ Die Anwendung interagiert mit dem Benutzer durch die Konsole. Benutzer können:
 ### 2. Validierung von Daten:
 
 Folgende Inputs des Benutzers, werden durch die Applikation geprüft, um ein reibungsloses Spielerlebnis für den Benutzer zu garantieren:
-- Menüauswahl-Validierung (Historie/Spielen) 
+- Menüauswahl-Validierung (Historie/Spielen)
 - Gameplay-Entscheidungen (Hit/Stand) 
-- Fortsetzungseingabe (Ja/Nein) 
-
+- Fortsetzungseingabe (Ja/Nein)
 
 ---
 

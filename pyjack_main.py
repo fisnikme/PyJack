@@ -12,7 +12,7 @@ KARTENWERTE = {
 
 GAME_LOG_FILE = "game_log.json"
 
-# Basisstruktur für den Log zur wiederverwendung im Code
+# Basisstruktur für den Log
 DEFAULT_LOG = {
     "spiele": [],
     "statistiken": {
@@ -177,7 +177,6 @@ def game_log_laden():
 
 def game_log_speichern(log) -> None:
     # Speichert die Spielhistorie in game_log.json.
-
     # Parameter:
     # log: Dictionary mit Spielhistorie und Statistiken
     try:
@@ -238,7 +237,7 @@ def menu_spielhistorie_anzeigen():
     # Statistiken anzeigen
     # Sichere Abfrage
     stats = log.get("statistiken", DEFAULT_LOG["statistiken"])
-    print(f"\nGESAMTSTATISTIK:")
+    print(f"\nGesamtstatistik:")
     print(f"  Gesamt gespielte Spiele: {stats.get('spiele', 0)}")
     print(f"  Gewonnen (Spieler): {stats.get('gewonnen_spieler', 0)}")
     print(f"  Gewonnen (Dealer): {stats.get('gewonnen_dealer', 0)}")
@@ -249,7 +248,7 @@ def menu_spielhistorie_anzeigen():
     if spiele_liste:
         print(f"\nLETZTE {min(5, len(spiele_liste))} SPIELE:")
         print("-"*60)
-        # Zeige die letzten 5 Einträge
+        # Zeigt die letzten 5 Einträge
         for spiel in spiele_liste[-5:]:
 
             # Verwendung von.get() mit Standardwerten, um KeyErrors abzufangen
@@ -359,7 +358,7 @@ def spiel_durchfuehren():
     gewinner = gewinner_ermitteln(spieler_punkte, dealer_punkte)
 
     print("\n" + "="*50)
-    print("RUNDENERGEBNIS")
+    print("Runedenergebnis")
     print("="*50)
     spielzustand_anzeigen(spieler_hand, dealer_hand, dealer_verborgen=False)
 
