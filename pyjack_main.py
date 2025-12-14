@@ -131,7 +131,7 @@ def gewinner_ermitteln(spieler_punkte, dealer_punkte):
 
 
 def game_log_laden():
-    """Lädt game_log.json oder gibt eine Standardstruktur zurück."""
+    # Lädt game_log.json oder gibt eine Standardstruktur zurück.
     if not os.path.exists(GAME_LOG_FILE):
         # Rückgabe einer Kopie, damit der Aufrufer das Original nicht verändert
         return {
