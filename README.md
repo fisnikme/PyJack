@@ -110,10 +110,10 @@ PyJack
 >tbd
 
 ### Verwendete Libraries 
-json
-random
-os
-datetime
+- json: Speichern und Laden der Spielhistorie
+- random: Mischen des Kartendecks und zufälliges Austeilen der Karten
+- os: Prüfen ob Log-File bereits existiert, bevor sie erstellt wird
+- datetime: Zeitstempel für jedes gespeicherte Spielergebnis 
 
 
 ## 👥 Gruppe
